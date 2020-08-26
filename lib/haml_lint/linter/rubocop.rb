@@ -95,6 +95,7 @@ module HamlLint
     # @return [Array<String>]
     def rubocop_flags
       flags = %w[--format HamlLint::OffenseCollector]
+      flags += ['--except', Array(config['ignored_cops']).join(',')]
       flags += ['--config', ENV['HAML_LINT_RUBOCOP_CONF']] if ENV['HAML_LINT_RUBOCOP_CONF']
       flags += ['--stdin']
       flags
